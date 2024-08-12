@@ -4,7 +4,10 @@
   "description": "form by Ankur Halder",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js",
+    "build": "cross-env NODE_ENV=production node server.js",
+    "debug": "ndb server.js"
   },
   "repository": {
     "type": "git",
