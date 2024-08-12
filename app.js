@@ -11,16 +11,13 @@ const cors = require("cors");
 const AppError = require("./utils/appError");
 const globalErrorHandler = require("./controllers/errorController");
 const userRouter = require("./routes/userRoutes");
+const formRouter = require("./routes/formRoutes");
 
 const app = express();
 
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "https://www.ankurhalder.in",
-      "https://ankurhalder.in",
-    ],
+    origin: ["http://localhost:5173", "https://autofeedform.ankurhalder.in"],
     methods: "GET,POST,PUT,DELETE,PATCH,UPDATE,HEAD",
     allowedHeaders:
       "Origin, X-Requested-With, Content-Type, Accept, Authorization",
@@ -92,6 +89,7 @@ app.get("/", (req, res, next) => {
 });
 //@ 2) Routes
 
+app.use("/api/v1/forms", formRouter);
 app.use("/api/v1/users", userRouter);
 app.all("*", (req, res, next) => {
   next(new AppError(`Cant find ${req.originalUrl} on this server`, 404));
